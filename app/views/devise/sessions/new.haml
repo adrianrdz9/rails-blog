@@ -1,0 +1,21 @@
+.container
+    %h2.text-center Iniciar sesion
+
+    =form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+
+        =devise_error_messages!
+        .row.center-xs
+            .form-group.col-xs-12.col-md-10.col-lg-8
+                .box
+                    =f.email_field :email, autofocus: true, placeholder: "Email", required: true, class:"form-control"
+
+            .form-group.col-xs-12.col-md-10.col-lg-8
+                .box
+                    =f.password_field :password, placeholder: "Contraseña", class:"form-control"
+
+            .col-xs-12.col-md-10.col-lg-8
+                .box
+                    =f.submit "Inicial sesion", class:"btn btn-info"
+            .col-xs-12.col-md-10.col-lg-8
+                .box
+                    =render "devise/shared/links"

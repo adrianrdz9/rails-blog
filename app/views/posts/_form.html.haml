@@ -1,0 +1,25 @@
+
+
+=form_for @post do |f|
+    -if @post.errors.any?
+        #error_explanation
+            %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+            %ul
+                - @post.errors.full_messages.each do |msg|
+                    %li= msg
+
+    .container
+        .form-group.col-xs-6
+            .box
+                =f.text_field :title, class:"form-control", placeholder: "Título"
+
+        .form-group.col-xs-6
+            .box#topic-select-container
+                = f.select :subject do
+                    -Topic.all.each do |topic|
+                        %option= topic.topic
+        .form-group.col-xs-12   
+            =f.text_area :body, class:"form-control", rows:"20", placeholder:"Cuerpo del artículo"
+
+        .form-group.center-xs
+            =f.submit 'Guardar', class:"btn btn-success"

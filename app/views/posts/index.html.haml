@@ -1,0 +1,52 @@
+
+
+.container
+    .panel.panel-default
+        .panel-heading
+            .row
+                .col-xs-6.start-xs
+                    .box
+                        %h1.panel-title Mis publicaciones
+                .col-xs-6.end-xs
+                    .box
+                        =link_to 'Crear nueva publicacion', new_post_path, class:"btn btn-primary white-text"
+        .panel-body
+            -@posts.each do |post|
+                .panel.panel-default
+                    .panel-heading
+                        .row
+                            .col-xs-6.start-xs
+                                .box
+                                    %h2.panel-title.inline-block= post.title
+                                    %span.inline-block
+                                        (
+                                        visto
+                                        =post.impressionist_count(filter: :ip_address)
+                                        veces
+                                        )
+                            .col-xs-6.end-xs
+                                .box
+                                    %p
+                                        -(1..5).each do |j|
+                                            -if j <= post.rate
+                                                %i.glyphicon.glyphicon-star.medium
+                                            -else
+                                                %i.glyphicon.glyphicon-star-empty.medium
+
+                            .col-xs-6.start-xs
+                                .box
+                                    %span
+                                        (
+                                        =post.subject
+                                        )
+                    .panel-body.trucated-box
+                        .truncated
+                            =post.body.gsub(/\n/, '<br>').html_safe()
+
+                    .panel-footer
+                        .row.center-xs
+                            .col-xs-6
+                                .box
+                                    =link_to 'Ver completo', post, class: "btn btn-success white-text"
+                                    =link_to 'Editar', edit_post_path(post), class: "btn btn-info white-text"
+                                    =link_to 'Eliminar', post, method: :delete, data: {confirm: "¿Estas seguro? Esta accion no se puede deshacer"}, class: "btn btn-danger white-text"

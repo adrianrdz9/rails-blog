@@ -1,0 +1,12 @@
+class CreatePosts < ActiveRecord::Migration[5.0]
+  def change
+    create_table :posts do |t|
+      t.string :title, null: false
+      t.string :subject, null: false
+      t.integer :rate, default: 5
+      t.text :body, null: false
+
+      t.timestamps
+    end
+  end
+end

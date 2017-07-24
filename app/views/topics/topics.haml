@@ -1,0 +1,7 @@
+.container
+    %h1.text-center Categorias
+    .list-group
+        -@subjects.each do |subject|
+            %button{type:"button", class:"list-group-item"}
+                = subject
+                %span.badge= Post.where("subject = ?", subject).count

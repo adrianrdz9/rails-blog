@@ -1,0 +1,37 @@
+.container
+    -@posts.each do |post|
+        .panel.panel-default
+            .panel-heading
+                .row
+                    .col-xs-8
+                        .box
+                            %h3.panel-title.inline-block= post.title
+                            %p.inline-block
+                                (
+                                visto
+                                =post.impressionist_count(filter: :ip_address)
+                                veces
+                                )
+                    .col-xs-4.end-xs
+                        .box
+                            %p
+                                -(1..5).each do |j|
+                                    -if j <= post.rate
+                                        %i.glyphicon.glyphicon-star.medium
+                                    -else
+                                        %i.glyphicon.glyphicon-star-empty.medium
+                    .col-xs-6.start-xs
+                        .box
+                            ="-"
+                            =post.user.full_name()
+
+                    .col-xs-6.end-xs
+                        .box
+                            %span= post.subject
+
+            .panel-body.trucated-box
+                .truncated
+                    =post.body.gsub(/\n/, '<br>').html_safe()
+                .row.end-xs
+                    .col-xs-6
+                        =link_to 'Leer mas...', post_path(id: post.id), class: 'btn btn-link'

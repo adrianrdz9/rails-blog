@@ -1,0 +1,26 @@
+= form_for @comment do |f|
+    - if @comment.errors.any?
+        #error_explanation
+        %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
+        %ul
+            - @comment.errors.full_messages.each do |msg|
+                %li= msg
+
+    = f.hidden_field :user_id, value: current_user.id
+    = f.hidden_field :post_id, value: @post.id
+
+
+
+    .form-group
+        %h4 Comentar
+        = f.text_area :body, class:"form-control", placeholder: "Escribe aqui tu comentario", required: true
+
+    .form-group
+        %h4 Evaluacion de esta publicacion
+        = f.hidden_field :eval
+        %i.glyphicon.glyphicon-star.medium.eval-star#eval_1
+        -(2..5).each do |j|
+            %i.glyphicon.glyphicon-star-empty.medium.eval-star{id: "eval_#{j}"}
+
+    .center-xs
+        = f.submit 'Publicar', class:"btn mdc-bg-blue-500 mdc-text-white-darker text-uppercase"

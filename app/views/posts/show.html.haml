@@ -1,0 +1,55 @@
+.container
+    .row
+        .col-xs-12
+            .box
+                %h1.text-capitalize= @post.title
+                %footer
+                    %cite{title:"#{@post.user.full_name()}"}= @post.user.full_name()
+
+        .col-xs-12.right-xs
+            .box
+                -(1..5).each do |j|
+                    -if j <= @post.rate.ceil
+                        %i.glyphicon.glyphicon-star.medium
+                    -else
+                        %i.glyphicon.glyphicon-star-empty.medium
+        .col-xs-12.center-xs
+            .box.text-justify{style:"padding: 1em;"}
+                .divider
+                %p= @post.body.gsub(/\n/, '<br>').html_safe()
+    %h2.text-center Comentarios
+
+    .panel.panel-default
+        .panel-heading
+            %h2 Comentarios
+        .panel-body
+            -if @comments.count > 0
+                -@comments.each do |com|
+                    .panel.panel-default
+                        .panel-heading
+                            .row
+                                .col-xs-6.col-md-9.col-lg-10
+                                    .box
+                                        %span= com.user.full_name
+                                .col-xs-6.col-md-3.col-lg-2.right-xs
+                                    .box
+                                        %span{style:"text-align: right;"}
+                                            -(1..5).each do |j|
+                                                -if j <= com.eval
+                                                    %i.glyphicon.glyphicon-star.medium
+                                                -else
+                                                    %i.glyphicon.glyphicon-star-empty.medium
+                        .panel-body.comment
+                            %p.text-capitalize= com.body.gsub(/\n/, '<br>').html_safe()
+            -else
+                %span Aún no hay comentarios
+
+        .panel-footer
+            -if user_signed_in?
+                -@comment = Comment.new
+                =render 'comments/form'
+            -else
+                %span
+                    Por favor
+                    =link_to 'inicia sesion', new_user_session_path
+                    para poder comentar

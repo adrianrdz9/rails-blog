@@ -1,0 +1,97 @@
+.white-text{
+    color: white !important;
+}
+
+.top-notice-container{
+    padding: 0.4em;
+    margin: 0;
+    color: white;
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+.inline-block{
+    display: inline-block;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.close-notice{
+    &:hover{
+        color: rgba(203, 203, 204, 0.8);
+        cursor: pointer;
+    }
+    width: 10%;
+    margin-left: 80%;
+
+
+}
+
+.truncated-box {
+    //white-space: nowrap;
+    overflow: hidden;
+    //text-overflow: ellipsis;
+    //display: inline-block;
+    max-width: 100%;
+    //max-height: 100px;
+
+}
+
+.truncated{
+    overflow: hidden;
+    display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white;
+    padding: 10px 1em;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+div.divider{
+    height: 1px;
+    border-bottom: 1px solid #717171;
+    width: 80%;
+    margin-left: 10%;
+    margin-bottom: 1.3em;
+}
+
+.comment_hover:hover{
+    cursor: s-resize;
+}
+
+.comment_hover_2:hover{
+    cursor: n-resize;
+}
+
+
+.small{
+    font-size: 0.618em;
+}
+.normal{
+    font-size: 1em;
+}
+.medium{
+    font-size: 1.618em;
+}
+.big{
+    font-size: 2.618em;
+}
+.bigger{
+    font-size: 4.236em;
+}
+.biggest{
+    font-size: 6.854em;
+}

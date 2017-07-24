@@ -1,0 +1,10 @@
+%h1.text-center Editar publicacion
+.row.center-xs
+    .col-xs-10
+        .box
+
+            = render 'form'
+
+            = link_to 'Mostrar', @post
+            \|
+            = link_to 'Regresar', posts_path

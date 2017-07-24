@@ -1,0 +1,38 @@
+.container
+    %h2 Editar cuenta
+
+    =form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f|
+
+        =devise_error_messages!
+        .row
+            .box
+                .form-group.col-xs-12
+                    =f.email_field :email, autofocus: true, placeholder: "Email", required: true, class:"form-control"
+
+                .form-group.col-xs-12.col-md-6
+                    =f.text_field :first_name, placeholder: "Nombre (opcional)", class:"form-control"
+
+                .form-group.col-xs-12.col-md-6
+                    =f.text_field :last_name, placeholder: "Apellido (opcional)", class:"form-control"
+
+                .form-group.col-xs-12.col-md-6
+                    =f.password_field :password, placeholder: "Nueva contraseña (dejar en blanco si no quiere hacer cambios)", class:"form-control"
+
+
+                .form-group.col-xs-12.col-md-6
+                    =f.password_field :password_confirmation, placeholder: "Verificar contraseña", class:"form-control"
+
+                .form-group.col-xs-12
+                    =f.password_field :current_password, placeholder: "Contaseña actual (para guardar tus cambios)", class:"form-control"
+
+                .col-xs-12.center-xs
+                    =f.submit "Actualizar", class:"btn btn-info"
+
+    .row.center-xs
+        .box
+            .col-xs-12
+                %h3.text-center Cerrar mi cuenta
+            .col-xs-12
+                %p
+                    ¿No estas satisfecho?
+                    = button_to "Cerrar mi cuenta", registration_path(resource_name), data: { confirm: "¿Seguro?, esto no se puede deshacer. Todas tus publicaciones tambien seran eliminadas." }, method: :delete, class:"btn btn-danger"
